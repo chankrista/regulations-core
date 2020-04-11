@@ -1,7 +1,7 @@
 import logging
 
 import jsonschema
-
+import json
 from regcore.db import storage
 from regcore.responses import success, user_error
 from regcore_write.views.security import json_body, secure_write
@@ -9,7 +9,7 @@ from regcore_write.views.security import json_body, secure_write
 # This JSON schema is used to validate the regulation data provided
 REGULATION_SCHEMA = {
     'type': 'object',
-    'id': 'reg_tree_node',
+    '$id': 'reg_tree_node',
     'additionalProperties': False,
     'required': ['text', 'children', 'label'],
     'properties': {
@@ -28,7 +28,6 @@ REGULATION_SCHEMA = {
         'node_type': {'type': 'string'}
     }
 }
-
 
 @secure_write
 @json_body
