@@ -30,8 +30,9 @@ def requires_search_args(view):
     @wraps(view)
     def wrapper(request, *args, **kwargs):
         try:
-            user_args = parser.parse(search_args, request)
+            user_args = parser.parse(search_args, request, location="querystring")
         except ValidationError as err:
+            logger.info("in val error")
             return user_error(err.messages)
         return view(request, *args, search_args=SearchArgs(**user_args),
                     **kwargs)

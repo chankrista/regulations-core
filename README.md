@@ -66,7 +66,7 @@ we'll run in `DEBUG` mode using SQLite for data storage. We don't have a turn
 key solution for integrating this with search (though it can be accomplished
 via a custom settings file).
 
-To run via Docker, 
+To run via Docker,
 ```bash
 docker build . -t eregs/core  # only needed after code changes
 docker run -p 8080:8080 eregs/core
@@ -159,7 +159,7 @@ BACKENDS = {
     'diffs': 'regcore.db.django_models.DMDiffs'
 }
 SEARCH_HANDLER = 'regcore_pgsql.views.search'
-APPS.append('regcore_pgsql')
+INSTALLED_APPS.append('regcore_pgsql')
 ```
 
 You may wish to extend the `regcore.settings.pgsql` module for simplicity.
